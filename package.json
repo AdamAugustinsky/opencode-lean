@@ -1,0 +1,31 @@
+{
+  "name": "opencode-lean",
+  "version": "0.1.0",
+  "description": "A lean OpenCode plugin with essential features",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node && tsc --emitDeclarationOnly",
+    "typecheck": "tsc --noEmit",
+    "dev": "bun run build --watch"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.1.21",
+    "@opencode-ai/sdk": "^1.1.21"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT"
+}
