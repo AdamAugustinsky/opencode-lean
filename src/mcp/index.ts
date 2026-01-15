@@ -34,10 +34,11 @@ export const builtinMcps: Record<McpName, RemoteMcpConfig> = {
   grep_app,
 }
 
-export function createMcps(disabled: McpName[] = []): Record<string, RemoteMcpConfig> {
+export function createMcps(disabled?: McpName[] | null): Record<string, RemoteMcpConfig> {
+  const disabledList = Array.isArray(disabled) ? disabled : []
   const mcps: Record<string, RemoteMcpConfig> = {}
   for (const [name, config] of Object.entries(builtinMcps)) {
-    if (!disabled.includes(name as McpName)) {
+    if (!disabledList.includes(name as McpName)) {
       mcps[name] = config
     }
   }

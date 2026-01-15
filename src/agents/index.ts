@@ -55,12 +55,13 @@ export const builtinAgents: Record<AgentName, () => AgentConfig> = {
 }
 
 export function createAgents(
-  overrides: Partial<Record<AgentName, AgentOverride>> = {}
+  overrides?: Partial<Record<AgentName, AgentOverride>> | null
 ): Record<string, AgentConfig> {
+  const overrideMap = overrides ?? {}
   const agents: Record<string, AgentConfig> = {}
 
   for (const [name, createAgent] of Object.entries(builtinAgents)) {
-    const override = overrides[name as AgentName]
+    const override = overrideMap[name as AgentName]
     if (override?.disabled) continue
 
     const agent = createAgent()
